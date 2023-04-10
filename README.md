@@ -1,4 +1,4 @@
-# Database-Postgres-CPP
+# Creation of Postgres Database and interactions in C++
 
 This project creates a PostgreSQL database and implements:
 1. A C++ program to read text files containing the entries (rows) for each table, and build
