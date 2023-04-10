@@ -1,0 +1,11 @@
+COLOR (COLOR_ID, NAME)
+CREATE TABLE color (color_id INT NOT NULL, name TEXT, CONSTRAINT clridpk PRIMARY KEY (color_id))
+
+STATE (STATE_ID, NAME)
+CREATE TABLE state (state_id INT NOT NULL, name TEXT, CONSTRAINT stidpk PRIMARY KEY (state_id))
+
+TEAM (TEAM_ID, NAME, STATE_ID, COLOR_ID, WINS, LOSSES)
+CREATE TABLE team (team_id INT NOT NULL, name TEXT, state_id INT, color_id INT, wins INT, losses INT, CONSTRAINT tmidpk PRIMARY KEY (team_id), CONSTRAINT stidfk FOREIGN KEY (state_id) REFERENCES state(state_id) ON DELETE SET NULL ON UPDATE CASCADE, CONSTRAINT clridfk FOREIGN KEY (color_id) REFERENCES color(color_id) ON DELETE SET NULL ON UPDATE CASCADE)
+
+PLAYER (PLAYER_ID, TEAM_ID, UNIFORM_NUM, FIRST_NAME, LAST_NAME, MPG, PPG, RPG, APG, SPG, BPG)
+CREATE TABLE player (player_id INT NOT NULL, team_id INT, uniform_num INT, first_name TEXT, last_name TEXT, mpg INT, ppg INT, rpg INT, apg INT, spg REAL, bpg REAL, CONSTRAINT plyridpk PRIMARY KEY (player_id), CONSTRAINT tmidfk FOREIGN KEY (team_id) REFERENCES team(team_id) ON DELETE SET NULL ON UPDATE CASCADE)
